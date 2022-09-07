@@ -11,7 +11,6 @@ int MaxDigit(int num)
 {
     int firstDigit = number /100 * 10;
     int secondDigit = number % 10;
-
     return firstDigit + secondDigit;
 }
 int result = MaxDigit(number);
