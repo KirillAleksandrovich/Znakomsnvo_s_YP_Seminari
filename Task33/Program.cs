@@ -12,22 +12,22 @@ int[] CreadArrayRndInt(int size, int min, int max)
 {
     int[] array = new int[size];
     Random rnd = new Random();
-        for (int i = 0; i < size; i++)
-        {
-            array[i] = rnd.Next(min, max + 1);
-        }
-        return array;
-} 
+    for (int i = 0; i < size; i++)
+    {
+        array[i] = rnd.Next(min, max + 1);
+    }
+    return array;
+}
 //Далее создаём метод для печать массива.
-void PrintArray (int[] array)
+void PrintArray(int[] array)
 {
     Console.Write("[");
     for (int i = 0; i < array.Length; i++)
-        {
-            if(i < array.Length -1) Console.Write($"{array[i]}, ");
-            else Console.Write($"{array[i]}");
-        }
-    Console.Write("]"); 
+    {
+        if (i < array.Length - 1) Console.Write($"{array[i]}, ");
+        else Console.Write($"{array[i]}");
+    }
+    Console.Write("]");
 }
 
 bool ArraySearch(int[] array, int search1)
@@ -35,7 +35,7 @@ bool ArraySearch(int[] array, int search1)
     bool exist = false;
     for (int i = 0; i < array.Length; i++)
     {
-        if(array[i] == search1);
+        if (array[i] == search1)
         {
             exist = true;
             break;
@@ -44,7 +44,7 @@ bool ArraySearch(int[] array, int search1)
     return exist;
 }
 
-int[] arr = CreadArrayRndInt(5,-100, 100);
+int[] arr = CreadArrayRndInt(5, -1000, 1000);
 PrintArray(arr);
 Console.WriteLine();
 Console.WriteLine("Введите число для поиска в массиве: ");
