@@ -3,38 +3,38 @@
 // 3 -> Среда
 // 5 -> Пятница
 Console.Clear();
-Console.Write("Введите номер от 1 до 7: ");
+Console.WriteLine("Введите номер от 1 до 7: ");
 string day = Console.ReadLine();
 
 if (day == "1")
 {
-    Console.Write("Понедельник");
+    Console.WriteLine("Понедельник");
 }
 else if (day == "2")
 {
-    Console.Write("Вторник");
+    Console.WriteLine("Вторник");
 }
 else if (day == "3")
 {
-    Console.Write("Среда");
+    Console.WriteLine("Среда");
 }
 else if (day == "4")
 {
-    Console.Write("Четверг");
+    Console.WriteLine("Четверг");
 }
 else if (day == "5")
 {
-    Console.Write("Пятница");
+    Console.WriteLine("Пятница");
 }
 else if (day == "6")
 {
-    Console.Write("Суббота");
+    Console.WriteLine("Суббота");
 }
 else if (day == "7")
 {
-    Console.Write("Воскресенье");
+    Console.WriteLine("Воскресенье");
 }
 else
 {
-    Console.Write("Данного дня недели не существует!");
+    Console.WriteLine("Данного дня недели не существует!");
 }
