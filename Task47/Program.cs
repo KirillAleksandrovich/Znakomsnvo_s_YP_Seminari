@@ -29,15 +29,15 @@ void PrintMatrix(double[,] matrix)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        Console.Write("|");
+        Console.Write("[");
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
             if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j], 5} ");
             else Console.Write($"{matrix[i, j], 5}");
         }
-        Console.WriteLine("|");
+        Console.WriteLine("]");
     }
 }
 
-double[,] array2D = CreateMatrixRndDbl(3, 4, -5, 5);
+double[,] array2D = CreateMatrixRndDbl(3, 4, -11, 11);
 PrintMatrix(array2D);

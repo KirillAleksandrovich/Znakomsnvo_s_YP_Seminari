@@ -13,47 +13,45 @@
 
 Console.Clear();
 
-int[,] CreateMatrixRndInt(int rows, int columns)
+Console.Write("введите номер строки: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("введите номер столбца: ");
+int m = Convert.ToInt32(Console.ReadLine());
+int [,] numbers = new int [3,4];
+FillArrayRandomNumbers(numbers);
+
+if (n > numbers.GetLength(0) || m > numbers.GetLength(1))
 {
-    int[,] matrix = new int[rows, columns];
-    Random rnd = new Random();
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            matrix[i, j] = rnd.Next(1, 11);
+    Console.WriteLine("Такого элемента нет!");
+}
+else
+{
+    Console.WriteLine($"Значение элемента {n} строки и {m} столбца равно {numbers[n-1,m-1]}");
+}
+
+PrintArray(numbers);
+
+void FillArrayRandomNumbers(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+        {        
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                array [i,j] = new Random().Next(1, 9)/10;
+            }   
         }
-    }
-    return matrix;
 }
 
-void PrintMatrix(int[,] matrix)
+void PrintArray(int[,] array)
 {
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        Console.Write("[");
-        for (int j = 0; j < matrix.GetLength(1); j++)
+        Console.Write("[ ");
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j],2}, ");
-            else Console.Write($"{matrix[i, j],2} ");
-        }
-        Console.WriteLine("]");
+            Console.Write(array[i,j] + " ");
+        }   
+        Console.Write("]");
+        Console.WriteLine(""); 
     }
 }
-
-void SearchDigit(int[,] array, int pos)
-{
-    int row = pos / 10;
-    int column = pos % 10;
-    if ((row > 3) || (column > 4)) Console.WriteLine($"{pos} -> такого числа нет в массиве");
-    else Console.WriteLine($"Значение введённого элемента равно {array[row - 1, column - 1]}"); // "- 1" добавлен для более упрощённой проверки наличия элемента 
-}
-
-int[,] array2D = CreateMatrixRndInt(3, 4);
-
-PrintMatrix(array2D);
-
-Console.Write($"Введите позицию элемента в массиве: ");
-int position = Convert.ToInt32(Console.ReadLine());
-
-SearchDigit(array2D, position);

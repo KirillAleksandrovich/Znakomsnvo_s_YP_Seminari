@@ -28,36 +28,36 @@ void PrintMatrix(int[,] matrix)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        Console.Write("|");
+        Console.Write("[");
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
             if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j],2} ");
             else Console.Write($"{matrix[i, j],2} ");
         }
-        Console.WriteLine("|");
+        Console.WriteLine("]");
     }
 }
 
 int[,] array2D = CreateMatrinsRndInt(3, 4, 1, 10);
 PrintMatrix(array2D);
 
-double[] ArithmeticDigit(int[,] matrix)
+double[] SearchElement(int[,] matrix)
 {
-    double[] ArithmeticMean = new double[matrix.GetLength(1)];
-    double rowSum = 0;
+    double[] sredneArifmetic = new double[matrix.GetLength(1)];
+    double roWs = 0;
     for (int j = 0; j < matrix.GetLength(1); j++)
     {
-        rowSum = 0;
+        roWs = 0;
         for (int i = 0; i < matrix.GetLength(0); i++)
         {
-            rowSum += matrix[i, j];
+            roWs += matrix[i, j];
         }
-        ArithmeticMean[j] = rowSum / matrix.GetLength(0);
+        sredneArifmetic[j] = roWs / matrix.GetLength(0);
     }
-    return ArithmeticMean;
+    return sredneArifmetic;
 }
 
-void PrintArrayDouble(double[] array)
+void PrintArray2D(double[] array)
 {
     for (int i = 0; i < array.Length; i++)
     {
@@ -65,6 +65,6 @@ void PrintArrayDouble(double[] array)
         else Console.Write($"{Math.Round(array[i], 1),1}.");
     }
 }
-double[] arithmetic = ArithmeticDigit(array2D);
+double[] progress = SearchElement(array2D);
 Console.Write("Среднее арифметическое каждого столбца: ");
-PrintArrayDouble(arithmetic);
+PrintArray2D(progress);
