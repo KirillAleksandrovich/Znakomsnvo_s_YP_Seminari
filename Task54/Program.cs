@@ -13,20 +13,18 @@
 
 Console.Clear();
 
-Console.WriteLine($"\nВведите размер массива m x n и диапазон случайных значений:");
-int m = InputNumbers("Введите m: ");
-int n = InputNumbers("Введите n: ");
-int range = InputNumbers("Введите диапазон: от 1 до ");
-
-int[,] array = new int[m, n];
-CreateArray(array);
-WriteArray(array);
-
-Console.WriteLine($"\nОтсортированный массив: ");
-OrderArrayLines(array);
-WriteArray(array);
-
-void OrderArrayLines(int[,] array)
+int [,] matrix = new int[4, 4];
+void PrintArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = new Random().Next(1, 10);
+        }
+    }
+}
+void SearchDigit(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -44,33 +42,22 @@ void OrderArrayLines(int[,] array)
         }
     }
 }
-
-int InputNumbers(string input)
-{
-    Console.Write(input);
-    int output = Convert.ToInt32(Console.ReadLine());
-    return output;
-}
-
-void CreateArray(int[,] array)
+void ArrayPrint(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
+         Console.Write("[");
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = new Random().Next(range);
+            Console.Write($"{array[i, j], 2} ");
         }
+        Console.WriteLine("]");
     }
 }
-
-void WriteArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write(array[i, j] + " ");
-        }
-        Console.WriteLine();
-    }
-}
+ 
+PrintArray(matrix);
+ArrayPrint(matrix);
+SearchDigit(matrix);
+Console.WriteLine($"\nОтсортированный массив: ");
+Console.WriteLine();
+ArrayPrint(matrix);

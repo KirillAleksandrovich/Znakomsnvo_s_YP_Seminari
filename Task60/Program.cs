@@ -8,74 +8,72 @@
 
 Console.Clear();
 
-Console.WriteLine($"\nВведите размер массива X x Y x Z:");
-int x = InputNumbers("Введите X: ");
-int y = InputNumbers("Введите Y: ");
-int z = InputNumbers("Введите Z: ");
-Console.WriteLine($"");
+int arraySizeX = 2;
+int arraySizeY = 2;
+int arraySizeZ = 2;
+int minNumber = 10;
+int maxNumber = 99;
+int[,,] testArray = new int[arraySizeX, arraySizeY, arraySizeZ];
 
-int[,,] array3D = new int[x, y, z];
-CreateArray(array3D);
-WriteArray(array3D);
-
-int InputNumbers(string input)
+void FillArrayRandomNumber(int[,,] array, int minNumber = 0, int maxNumber = 9)
 {
-    Console.Write(input);
-    int output = Convert.ToInt32(Console.ReadLine());
-    return output;
+    Random rand = new Random();
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int h = 0; h < array.GetLength(2); h++)
+            {
+                while (array[i, j, h] == 0)
+                {
+                    int number = rand.Next(minNumber, maxNumber + 1);
+
+                    if (IsNumberInArray(array, number) == false)
+                    {
+                        array[i, j, h] = number;
+                    }
+                }
+            }
+        }
+    }
 }
 
-void WriteArray(int[,,] array3D)
+bool IsNumberInArray(int[,,] array, int number)
 {
-    for (int i = 0; i < array3D.GetLength(0); i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < array3D.GetLength(1); j++)
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write($"X({i}) Y({j}) ");
-            for (int k = 0; k < array3D.GetLength(2); k++)
+            for (int h = 0; h < array.GetLength(2); h++)
             {
-                Console.Write($"Z({k})={array3D[i, j, k]}; ");
+                if (array[i, j, h] == number) return true;
             }
+        }
+    }
+    return false;
+}
+
+void PrintArrayWithIdex(int[,,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int h = 0; h < array.GetLength(2); h++)
+            {
+                Console.Write(array[i, j, h]);
+                Console.Write("({0}, {1}, {2})\t", i, j, h);
+            }
+
             Console.WriteLine();
         }
+
         Console.WriteLine();
     }
 }
-
-void CreateArray(int[,,] array3D)
-{
-    int[] temp = new int[array3D.GetLength(0) * array3D.GetLength(1) * array3D.GetLength(2)];
-    int number;
-    for (int i = 0; i < temp.GetLength(0); i++)
-    {
-        temp[i] = new Random().Next(10, 100);
-        number = temp[i];
-        if (i >= 1)
-        {
-            for (int j = 0; j < i; j++)
-            {
-                while (temp[i] == temp[j])
-                {
-                    temp[i] = new Random().Next(10, 100);
-                    j = 0;
-                    number = temp[i];
-                }
-                number = temp[i];
-            }
-        }
-    }
-    int count = 0;
-    for (int x = 0; x < array3D.GetLength(0); x++)
-    {
-        for (int y = 0; y < array3D.GetLength(1); y++)
-        {
-            for (int z = 0; z < array3D.GetLength(2); z++)
-            {
-                array3D[x, y, z] = temp[count];
-                count++;
-            }
-        }
-    }
-}
+Console.Clear();
+FillArrayRandomNumber(testArray, minNumber, maxNumber);
+PrintArrayWithIdex(testArray);
 
 
